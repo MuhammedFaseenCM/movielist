@@ -1,27 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:movielist/controller/movieadd_provider.dart';
-import 'package:movielist/controller/save_movie.dart';
+import 'package:movielist/model/movie_model.dart';
+import 'package:movielist/view/addscreen/widgets/save_widget.dart';
 import 'package:movielist/view/widgets/core_widgets.dart';
 import 'package:movielist/view/widgets/const_colors.dart';
 import 'package:movielist/view/widgets/const_strings.dart';
-import 'package:movielist/view/widgets/image_widget.dart';
-import 'package:movielist/view/widgets/textformfield_widget.dart';
+import 'package:movielist/view/addscreen/widgets/image_widget.dart';
+import 'package:movielist/view/addscreen/widgets/textformfield_widget.dart';
 import 'package:provider/provider.dart';
 
+enum ActionType { addMovie, editMovie }
+
 class AddMovieScreen extends StatelessWidget {
-  const AddMovieScreen({super.key});
+  final ActionType type;
+  final MovieModel? movieModel;
+  final int? index;
+  const AddMovieScreen(
+      {super.key, required this.type, this.movieModel, this.index});
 
   @override
   Widget build(BuildContext context) {
     final addMovieProvider =
         Provider.of<MovieAddProvider>(context, listen: false);
+    if (type == ActionType.editMovie) {
+      addMovieProvider.movieNameController.text = movieModel!.title;
+      addMovieProvider.movieDirectorController.text = movieModel!.director;
+      addMovieProvider.movieYearController.text = movieModel!.year;
+      addMovieProvider.picture = movieModel!.imagePath;
+    }
     return WillPopScope(
       onWillPop: () async {
         addMovieProvider.clear();
         return true;
       },
       child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title:
+                Text(type == ActionType.addMovie ? "Add movie" : "Edit movie"),
+            centerTitle: true,
+          ),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -64,28 +81,7 @@ class AddMovieScreen extends StatelessWidget {
                                   controller:
                                       movieAddProvider.movieYearController),
                               kheight20,
-                              ButtonWidget(
-                                  child: TextButton(
-                                      onPressed: () {
-                                        if (movieAddProvider.picture == '') {
-                                          addMovieProvider
-                                              .changeimageValidString(
-                                                  'Select your image');
-                                          return;
-                                        } else {
-                                          movieAddProvider
-                                              .changeimageValidString('');
-                                        }
-                                        if (movieAddProvider
-                                            .formKey.currentState!
-                                            .validate()) {
-                                          saveMovie(
-                                              context: context,
-                                              picture:
-                                                  movieAddProvider.picture);
-                                        }
-                                      },
-                                      child: const Text("Submit")))
+                              SaveWidget(type: type)
                             ],
                           );
                         },

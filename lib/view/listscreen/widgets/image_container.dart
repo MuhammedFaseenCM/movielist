@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:movielist/view/widgets/const_strings.dart';
 
@@ -14,18 +13,18 @@ class ImageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return picture == ''
         ? Container(
-            height: height ?? 70,
-            width: width ?? 70,
+            height: 180,
+            width: 120,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5.0),
                 color: Colors.grey,
                 image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(defaultProfText),
                 )))
         : Container(
-            height: height ?? 70,
-            width: width ?? 70,
+            height: height ?? 200,
+            width: width ?? 120,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(

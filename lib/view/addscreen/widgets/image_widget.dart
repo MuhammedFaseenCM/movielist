@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:movielist/view/widgets/image_container.dart';
+import 'package:movielist/view/listscreen/widgets/image_container.dart';
 
 class ImageWidget extends StatelessWidget {
   final String image;
