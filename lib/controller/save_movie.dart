@@ -27,7 +27,6 @@ Future<void> saveMovie(
       directorName.isEmpty ||
       year.isEmpty) {
     snackBar(context, "Add valid details", color: kRedColor);
-    print("wrong");
     return;
   }
 

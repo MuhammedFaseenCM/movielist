@@ -33,7 +33,6 @@ class MovieListProvider extends ChangeNotifier {
 
   Future<void> updateMovie(MovieModel value, int index) async {
     final movieDB = await Hive.openBox<MovieModel>('movie_db');
-    print(index);
     await movieDB.putAt(index, value);
     getMovieList();
   }

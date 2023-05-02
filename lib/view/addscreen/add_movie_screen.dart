@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movielist/controller/movieadd_provider.dart';
 import 'package:movielist/model/movie_model.dart';
 import 'package:movielist/view/addscreen/widgets/save_widget.dart';
-import 'package:movielist/view/widgets/core_widgets.dart';
 import 'package:movielist/view/widgets/const_colors.dart';
 import 'package:movielist/view/widgets/const_strings.dart';
 import 'package:movielist/view/addscreen/widgets/image_widget.dart';

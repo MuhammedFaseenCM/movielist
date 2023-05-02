@@ -8,7 +8,7 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      //overflow: TextOverflow.fade,
+      overflow: TextOverflow.clip,
       textAlign: TextAlign.start,
       textDirection: TextDirection.ltr,
       softWrap: true,
