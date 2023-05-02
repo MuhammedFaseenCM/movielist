@@ -81,7 +81,10 @@ class AddMovieScreen extends StatelessWidget {
                                   controller:
                                       movieAddProvider.movieYearController),
                               kheight20,
-                              SaveWidget(type: type)
+                              SaveWidget(
+                                type: type,
+                                index: index,
+                              )
                             ],
                           );
                         },

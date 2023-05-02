@@ -18,7 +18,7 @@ class MovieListProvider extends ChangeNotifier {
     final movieDB = await Hive.openBox<MovieModel>('movie_db');
     movieList.clear();
     movieList.addAll(movieDB.values);
-    print(movieList);
+
     movieDB.delete(2);
     notifyListeners();
   }
@@ -26,15 +26,15 @@ class MovieListProvider extends ChangeNotifier {
   Future<void> deleteMovie(int? index) async {
     final movieDB = await Hive.openBox<MovieModel>('movie_db');
     await movieDB.deleteAt(index!);
-    print("deleted");
+
     await getMovieList();
     notifyListeners();
   }
 
   Future<void> updateMovie(MovieModel value, int index) async {
     final movieDB = await Hive.openBox<MovieModel>('movie_db');
-
-    await movieDB.put(index, value);
+    print(index);
+    await movieDB.putAt(index, value);
     getMovieList();
   }
 }
